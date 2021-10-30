@@ -18,6 +18,7 @@ body {
   flex-direction: column;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   min-height: 100vh;
+  justify-content: space-between;
   background-color: #ccfaee;
 }
 
@@ -66,6 +67,10 @@ h1 {
   display: flex;
 }
 
+.header nav ul li {
+  margin-left: 1rem;
+}
+
 .header nav a {
   color: #ccfaee;
   text-decoration: none;
@@ -81,7 +86,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 86.5vh;
 }
 
 .wrapper {
@@ -208,7 +213,6 @@ main {
 }
 
 .footer {
-  margin: auto 0 0 0;
   background-color: #3e6c61;
   color: #fff;
   padding: 1rem 2rem;
