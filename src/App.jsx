@@ -1,14 +1,18 @@
 import "./normalize.css";
 import "./App.css";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import ListWrapper from "./components/ListWrapper";
 
 function App() {
   return (
-    <div>
-      <h1>Hello Litty!</h1>
-      <h2>The shitty kitty</h2>
+    <>
+      <Header appName="ShoppiZilla" className="header" />
+      <main>
+        <ListWrapper />
+      </main>
       <Footer companyName="Buschbär &amp; Litty Inc" />
-    </div>
+    </>
   );
 }
 

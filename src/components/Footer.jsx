@@ -17,7 +17,7 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = {
-  companyName: "You Company name here",
+  companyName: "Your company name here",
 };
 
 export default Footer;
