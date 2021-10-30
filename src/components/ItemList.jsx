@@ -5,7 +5,7 @@ const ItemList = () => {
   return (
     <ul className="item-list">
       <ListItem itemName="Milk"/>
-      <ListItem itemName="Butter"/>
+      <ListItem itemName="Beer"/>
       <ListItem itemName="Buttercup"/>
     </ul>
   );
