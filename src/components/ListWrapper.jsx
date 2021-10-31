@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useLocalstoragePersist from "../hooks/useLocalstoragePersist";
 import AddItem from "./AddItem";
 import Button from "./Button";
 import ItemList from "./ItemList";
 
 const ListWrapper = () => {
   const [list, setList] = useState([]);
+
+  useLocalstoragePersist("list", list, setList);
 
   const addItemToList = (item) => {
     setList((prevItems) => [...prevItems, item]);
