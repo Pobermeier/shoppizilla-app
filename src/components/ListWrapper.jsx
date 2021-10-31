@@ -14,6 +14,14 @@ const ListWrapper = () => {
     setList([]);
   };
 
+  const updateItem = (id, newName) => {
+    setList((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { id: item.id, itemName: newName } : item,
+      ),
+    );
+  };
+
   const deleteItem = (id) => {
     setList((prevItems) => {
       return prevItems.filter((item) => item.id !== id);
@@ -27,7 +35,7 @@ const ListWrapper = () => {
         <p>Enter a comma-separated list of items in the input field below:</p>
       </div>
       <AddItem onAddItem={addItemToList} />
-      <ItemList list={list} onDeleteItem={deleteItem}/>
+      <ItemList list={list} onDeleteItem={deleteItem} onUpdateItem={updateItem}/>
       {list.length > 0 && (
         <div>
           <Button isDanger isLarge onClick={deleteAllItems}>

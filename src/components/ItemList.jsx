@@ -1,7 +1,7 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-const ItemList = ({ list, onDeleteItem }) => {
+const ItemList = ({ list, onDeleteItem, onUpdateItem }) => {
   return (
     <ul className="item-list">
       {list.map((item) => (
@@ -9,6 +9,7 @@ const ItemList = ({ list, onDeleteItem }) => {
           key={item.id}
           itemName={item.itemName}
           onDeleteItem={onDeleteItem}
+          onUpdateItem={onUpdateItem}
           id={item.id}
         />
       ))}
