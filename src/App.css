@@ -22,7 +22,6 @@ body {
   background-color: #ccfaee;
 }
 
-
 h1 {
   margin: 0;
 }
@@ -93,6 +92,7 @@ main {
 .wrapper {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  margin: 2rem 0;
   padding: 2rem 3rem;
   border-radius: 1rem;
   text-align: center;
@@ -121,6 +121,7 @@ main {
 }
 
 .wrapper form input {
+  outline: 1px solid #3e6c61;
   flex: 1;
 }
 
@@ -228,6 +229,7 @@ main {
   }
 
   .wrapper {
+    margin: 0;
     padding: 0.75rem 1.5rem;
   }
 }
