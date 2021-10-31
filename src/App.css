@@ -121,6 +121,7 @@ main {
 }
 
 .wrapper form input {
+  outline: 1px solid #3e6c61;
   flex: 1;
 }
 
