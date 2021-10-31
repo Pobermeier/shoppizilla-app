@@ -13,10 +13,14 @@ const AddItem = ({ onAddItem }) => {
     //   onAddItem(item);
     //   inputRef.current.value = "";
     // }
-    if (value.trim()) {
-      onAddItem({ id: v4(), itemName: value.trim() });
-      setValue("");
-    }
+    const itemArray = value.split(",");
+
+    itemArray.forEach((item) => {
+      if (item.trim()) {
+        onAddItem({ id: v4(), itemName: item.trim() });
+        setValue("");
+      }
+    });
   };
 
   return (
