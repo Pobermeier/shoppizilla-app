@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useLocalstoragePersist from "../hooks/useLocalstoragePersist";
 import AddItem from "./AddItem";
 import Button from "./Button";
@@ -10,7 +10,7 @@ const ListWrapper = () => {
   useLocalstoragePersist("list", list, setList);
 
   const addItemToList = (item) => {
-    setList((prevItems) => [...prevItems, item]);
+    setList((prevItems) => [item, ...prevItems]);
   };
 
   const deleteAllItems = () => {
@@ -38,7 +38,11 @@ const ListWrapper = () => {
         <p>Enter a comma-separated list of items in the input field below:</p>
       </div>
       <AddItem onAddItem={addItemToList} />
-      <ItemList list={list} onDeleteItem={deleteItem} onUpdateItem={updateItem}/>
+      <ItemList
+        list={list}
+        onDeleteItem={deleteItem}
+        onUpdateItem={updateItem}
+      />
       {list.length > 0 && (
         <div>
           <Button isDanger isLarge onClick={deleteAllItems}>
