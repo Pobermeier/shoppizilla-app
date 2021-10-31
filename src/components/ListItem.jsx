@@ -1,21 +1,25 @@
 import React from "react";
 import InteractionIcon from "./InteractionIcon";
+import PropTypes from "prop-types";
 
-const ListItem = ({ itemName }) => {
+const ListItem = ({ id, itemName, onDeleteItem }) => {
   return (
     <li className="list-item">
       <div>{itemName}</div>
       <div className="icon-wrapper">
+        <InteractionIcon className="edit-icon" />
         <InteractionIcon
-          className="edit-icon"
-          clickHandler={() => {
-            console.log("clicked");
-          }}
+          className="del-icon"
+          onClick={() => onDeleteItem(id)}
         />
-        <InteractionIcon className="del-icon" />
       </div>
     </li>
   );
+};
+
+ListItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  itemName: PropTypes.string.isRequired,
 };
 
 export default ListItem;

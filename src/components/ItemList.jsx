@@ -1,12 +1,17 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-const ItemList = () => {
+const ItemList = ({ list, onDeleteItem }) => {
   return (
     <ul className="item-list">
-      <ListItem itemName="Milk"/>
-      <ListItem itemName="Beer"/>
-      <ListItem itemName="Buttercup"/>
+      {list.map((item) => (
+        <ListItem
+          key={item.id}
+          itemName={item.itemName}
+          onDeleteItem={onDeleteItem}
+          id={item.id}
+        />
+      ))}
     </ul>
   );
 };
