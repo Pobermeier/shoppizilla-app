@@ -26,6 +26,20 @@ h1 {
   margin: 0;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 86.5vh;
+}
+
+input {
+  padding: 0.2rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 0.2rem;
+  border: 1px solid grey;
+}
+
 .container {
   max-width: 1480px;
 }
@@ -82,11 +96,19 @@ h1 {
   color: #f35f3a;
 }
 
-main {
+.login form {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 86.5vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login form input {
+  min-width: 260px;
+  font-size: 1rem;
+}
+
+.login form > *:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 .wrapper {
@@ -161,13 +183,6 @@ main {
 .btn-large {
   font-size: 1.2rem;
   padding: 0.75rem 1.5rem;
-}
-
-.add-item-form input {
-  padding: 0.2rem 0.75rem;
-  font-size: 0.9rem;
-  border-radius: 0.2rem;
-  border: 1px solid grey;
 }
 
 .item-list {
