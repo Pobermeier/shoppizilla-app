@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   addDoc,
   deleteDoc,
@@ -9,9 +9,11 @@ import {
 } from "@firebase/firestore";
 import { db } from "../firebaseConfig";
 import useLocalstoragePersist from "../hooks/useLocalstoragePersist";
+import { AuthContext as authContext } from "../context/authContext";
 import AddItem from "./AddItem";
 import Button from "./Button";
 import ItemList from "./ItemList";
+import { Redirect } from "react-router";
 
 const ListWrapper = () => {
   const [list, setList] = useState([]);
@@ -31,6 +33,8 @@ const ListWrapper = () => {
       unsubscribe();
     };
   }, []);
+
+  const { user, logout } = useContext(authContext);
 
   useLocalstoragePersist("list", list, setList);
 
@@ -68,6 +72,8 @@ const ListWrapper = () => {
     await deleteDoc(doc(db, "items", id));
   };
 
+  if (!user) return <Redirect to="/" />;
+
   return (
     <div className="wrapper">
       <div>
@@ -80,13 +86,18 @@ const ListWrapper = () => {
         onDeleteItem={deleteItem}
         onUpdateItem={updateItem}
       />
-      {list.length > 0 && (
-        <div>
+      <div>
+        {list.length > 0 && (
           <Button isDanger isLarge onClick={deleteAllItems}>
             Clear List
           </Button>
-        </div>
-      )}
+        )}{" "}
+        {user && (
+          <Button isLarge onClick={logout}>
+            Logout
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

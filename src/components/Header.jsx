@@ -15,7 +15,7 @@ const Header = ({ appName, className }) => {
         </div>
         <nav>
           <ul>
-            <NavLink path="/" title="Home" />
+            <NavLink path="/" title="Login" />
             <NavLink path="/about" title="About" />
           </ul>
         </nav>
