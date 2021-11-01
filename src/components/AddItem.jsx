@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Button from "./Button";
-import { v4 } from "uuid";
 
 const AddItem = ({ onAddItem }) => {
   const [value, setValue] = useState("");
@@ -17,7 +16,7 @@ const AddItem = ({ onAddItem }) => {
 
     itemArray.forEach((item) => {
       if (item.trim()) {
-        onAddItem({ id: v4(), itemName: item.trim() });
+        onAddItem({ itemName: item.trim() });
         setValue("");
       }
     });
