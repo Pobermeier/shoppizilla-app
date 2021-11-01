@@ -1,4 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  addDoc,
+  deleteDoc,
+  collection,
+  onSnapshot,
+  doc,
+  setDoc,
+} from "@firebase/firestore";
+import { db } from "../firebaseConfig";
 import useLocalstoragePersist from "../hooks/useLocalstoragePersist";
 import AddItem from "./AddItem";
 import Button from "./Button";
@@ -7,28 +16,56 @@ import ItemList from "./ItemList";
 const ListWrapper = () => {
   const [list, setList] = useState([]);
 
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "items"), (collection) => {
+      const newItems = [];
+
+      collection.forEach((item) => {
+        newItems.push({ id: item.id, ...item.data() });
+      });
+
+      setList(newItems);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   useLocalstoragePersist("list", list, setList);
 
-  const addItemToList = (item) => {
-    setList((prevItems) => [item, ...prevItems]);
+  const addItemToList = async ({ id, itemName }) => {
+    // setList((prevItems) => [item, ...prevItems]);
+    try {
+      await addDoc(collection(db, "items"), {
+        itemName,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   const deleteAllItems = () => {
-    setList([]);
+    // setList([]);
+    list.forEach(async (item) => deleteItem(item.id));
   };
 
-  const updateItem = (id, newName) => {
-    setList((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { id: item.id, itemName: newName } : item,
-      ),
-    );
-  };
-
-  const deleteItem = (id) => {
-    setList((prevItems) => {
-      return prevItems.filter((item) => item.id !== id);
+  const updateItem = async (id, newName) => {
+    // setList((prevItems) =>
+    //   prevItems.map((item) =>
+    //     item.id === id ? { id: item.id, itemName: newName } : item,
+    //   ),
+    // );
+    await setDoc(doc(db, "items", id), {
+      itemName: newName,
     });
+  };
+
+  const deleteItem = async (id) => {
+    // setList((prevItems) => {
+    //   return prevItems.filter((item) => item.id !== id);
+    // });
+    await deleteDoc(doc(db, "items", id));
   };
 
   return (
