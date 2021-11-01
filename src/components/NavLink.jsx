@@ -1,10 +1,11 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
 const NavLink = ({ path, title }) => {
   return (
     <li>
-      <a href={path}>{title}</a>
+      <Link to={path}>{title}</Link>
     </li>
   );
 };
